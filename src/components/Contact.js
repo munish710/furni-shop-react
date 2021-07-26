@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="content">
           <p>Hurry! Subscribe now. We promise we won't spam you :)</p>
 
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               className="form-input"
