@@ -13,8 +13,8 @@ const Hero = () => {
           Comfort Zone
         </h1>
         <p>
-          Find the perfect piece of furniture for your day to day needs, making
-          elegance functional
+          Find the perfect piece of furniture for your day to day needs, without
+          compromising on beauty or functionality.
         </p>
         <Link to="/products" className="btn hero-btn">
           Shop Now

@@ -23,19 +23,19 @@ export const services = [
     id: 1,
     icon: <GiCompass />,
     title: "mission",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    text: "Make the best in class furniture. That makes the life of your customers easy.",
   },
   {
     id: 2,
     icon: <GiDiamondHard />,
     title: "vision",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    text: "Bring elegance back to functional products. Why compromise?  Bring harmony back to elegance and functionality.",
   },
   {
     id: 3,
     icon: <GiStabbedNote />,
     title: "history",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    text: "Expertise of tradition combined with modern technology. Respecting the past, acknowledging the present.",
   },
 ];
 
