@@ -4,7 +4,27 @@ import { PageHero } from "../components";
 import aboutImg from "../assets/hero-bcg.jpeg";
 
 const AboutPage = () => {
-  return <h4>about page</h4>;
+  return (
+    <main>
+      <PageHero title="about" />
+      <Wrapper className="page section section-center">
+        <img src={aboutImg} alt="desk" />
+        <article>
+          <div className="title">
+            <h2>our story</h2>
+            <div className="underline"></div>
+          </div>
+          <p>
+            A one stop store for all your furniture needs. Combining the
+            traditional practices with the modern technologies. Our mission is
+            to create elegant and functional furniture, that become an integral
+            part of your life. Love to have you tag along our journey and become
+            a member of Comfy-Sloth.
+          </p>
+        </article>
+      </Wrapper>
+    </main>
+  );
 };
 
 const Wrapper = styled.section`
