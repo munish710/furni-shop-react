@@ -66,17 +66,17 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className="content">
             <h2>{name}</h2>
-            <Stars />
+            <Stars stars={stars} reviews={reviews} />
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{description}</p>
             <p className="info">
-              <span>Available : {stock > 0 ? "in stock" : "out of stock"}</span>
+              Available :<span> {stock > 0 ? "in stock" : "out of stock"}</span>
             </p>
             <p className="info">
-              <span>SKU: {}</span>
+              SKU:<span> {}</span>
             </p>
             <p className="info">
-              <span>Brand:</span>
+              Brand:<span>{}</span>
             </p>
             <hr />
             {stock > 0 && <AddToCart />}
