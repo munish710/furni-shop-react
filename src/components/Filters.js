@@ -21,15 +21,41 @@ const Filters = () => {
       <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
-          <input
-            type="text"
-            name="text"
-            placeholder="search"
-            className="search-input"
-            value={text}
-            onChange={updateFilters}
-          ></input>
+          <div className="form-control">
+            <input
+              type="text"
+              name="text"
+              placeholder="search"
+              className="search-input"
+              value={text}
+              onChange={updateFilters}
+            />
+          </div>
+
           {/* end of search input */}
+
+          {/* categories */}
+          <div className="form-control">
+            <h5>Category</h5>
+            <div>
+              {categories.map((c, index) => {
+                return (
+                  <button
+                    name="category"
+                    type="button"
+                    key={index}
+                    className={`${
+                      category === c.toLowerCase() ? "active" : null
+                    }`}
+                    onClick={updateFilters}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {/* categories */}
         </form>
       </div>
     </Wrapper>
