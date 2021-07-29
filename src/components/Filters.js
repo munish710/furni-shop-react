@@ -6,7 +6,16 @@ import { FaCheck } from "react-icons/fa";
 
 const Filters = () => {
   const {
-    filters: { text, category, color, minPrice, maxPrie, price, shipping },
+    filters: {
+      text,
+      category,
+      color,
+      company,
+      minPrice,
+      maxPrie,
+      price,
+      shipping,
+    },
     updateFilters,
     clearFilters,
     allProducts,
@@ -32,7 +41,7 @@ const Filters = () => {
             />
           </div>
 
-          {/* end of search input */}
+          {/*  search input end */}
 
           {/* categories */}
           <div className="form-control">
@@ -55,7 +64,27 @@ const Filters = () => {
               })}
             </div>
           </div>
-          {/* categories */}
+          {/* categories end */}
+
+          {/* .Companies */}
+          <div className="form-control">
+            <h5>Company</h5>
+            <select
+              name="company"
+              value={company}
+              onChange={updateFilters}
+              className="company"
+            >
+              {companies.map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* Companies end*/}
         </form>
       </div>
     </Wrapper>
@@ -99,6 +128,7 @@ const Wrapper = styled.section`
     background: var(--clr-grey-10);
     border-radius: var(--radius);
     border-color: transparent;
+    outline: none;
     padding: 0.25rem;
   }
   .colors {
