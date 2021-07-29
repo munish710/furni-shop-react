@@ -66,6 +66,11 @@ export const FilterProvider = ({ children }) => {
       value = e.target.dataset.color;
     }
 
+    if (name === "price") {
+      //value was being saved as a string on changing slider
+      value = Number(value);
+    }
+
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
 
