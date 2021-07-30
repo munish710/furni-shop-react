@@ -50,8 +50,45 @@ const filter_reducer = (state, action) => {
       const { name, value } = action.payload;
       return { ...state, filters: { ...state.filters, [name]: value } };
     case FILTER_PRODUCTS:
-      console.log("Fitering products");
-      return { ...state };
+      const { allProducts } = state;
+      const { text, category, company, color, price, shipping } = state.filters;
+      let temporaryProducts = [...allProducts];
+      if (text) {
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.name.toLowerCase().startsWith(text);
+        });
+      }
+
+      if (category !== "all") {
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.category === category;
+        });
+      }
+
+      if (company !== "all") {
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.company === company;
+        });
+      }
+
+      if (color !== "all") {
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.colors.find((c) => c === color);
+        });
+      }
+
+      //price
+      temporaryProducts = temporaryProducts.filter(
+        (product) => product.price <= price
+      );
+
+      if (shipping) {
+        temporaryProducts = temporaryProducts.filter(
+          (product) => product.shipping === true
+        );
+      }
+
+      return { ...state, filteredProducts: temporaryProducts };
     case CLEAR_FILTERS:
       return {
         ...state,
