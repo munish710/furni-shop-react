@@ -1,5 +1,4 @@
 import React from "react";
-import { FaHtml5 } from "react-icons/fa";
 import { useFilterContext } from "../context/filter_context";
 import GridView from "./GridView";
 import ListView from "./ListView";
