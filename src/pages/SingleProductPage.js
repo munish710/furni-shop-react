@@ -73,10 +73,10 @@ const SingleProductPage = () => {
               Available :<span> {stock > 0 ? "in stock" : "out of stock"}</span>
             </p>
             <p className="info">
-              SKU:<span> {}</span>
+              SKU:<span> {sku}</span>
             </p>
             <p className="info">
-              Brand:<span>{}</span>
+              Brand:<span>{company}</span>
             </p>
             <hr />
             {stock > 0 && <AddToCart product={product} />}
