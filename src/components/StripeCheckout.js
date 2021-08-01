@@ -13,9 +13,39 @@ import { useUserContext } from "../context/user_context";
 import { formatPrice } from "../utils/helpers";
 import { useHistory } from "react-router-dom";
 
-const promise = loadStripe(proces.env.REACT_APP_STRIPE_PUBLIC_KEY);
+const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
+  const { cart, totalAMount, shippingFee, clearCart } = useCartContext();
+  const { myUser } = useUserContext();
+  const history = useHistory();
+
+  //STRIPE STUFF
+  const [succeded, setSuccedd] = useState(false);
+  const [error, setError] = useState(null);
+  const [processing, setProcessing] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setCLientSecret] = useState("");
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "Arial, sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#32325d",
+        },
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+  };
   return <h4>hello from Stripe Checkout </h4>;
 };
 
