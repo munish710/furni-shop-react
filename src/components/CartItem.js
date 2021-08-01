@@ -57,9 +57,12 @@ const Wrapper = styled.article`
     grid-template-rows: 75px;
     display: grid;
     grid-template-columns: 75px 125px;
-    align-items: center;
+    align-items: flex-start;
     text-align: left;
     gap: 1rem;
+    h5 {
+      font-size: 1rem;
+    }
   }
   img {
     width: 100%;
@@ -138,13 +141,13 @@ const Wrapper = styled.article`
       font-weight: 400;
     }
     .name {
-      font-size: 0.85rem;
+      font-size: 1rem;
     }
     .color {
-      font-size: 0.85rem;
+      font-size: 1rem;
       span {
-        width: 0.75rem;
-        height: 0.75rem;
+        width: 0.85rem;
+        height: 0.85rem;
       }
     }
     grid-template-columns: 1fr 1fr 1fr 1fr auto;
@@ -157,7 +160,7 @@ const Wrapper = styled.article`
       height: 100%;
       display: grid;
       grid-template-columns: 100px 200px;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
       text-align: left;
     }

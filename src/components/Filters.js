@@ -31,6 +31,7 @@ const Filters = () => {
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
           <div className="form-control">
+            <h5>Search</h5>
             <input
               type="text"
               name="text"
@@ -129,7 +130,7 @@ const Filters = () => {
           {/* price */}
           <div className="form-control">
             <h5>price</h5>
-            <p>{formatPrice(price)}</p>
+            <p style={{ marginBottom: 0 }}>{formatPrice(price)}</p>
             <input
               type="range"
               name="price"
@@ -144,7 +145,9 @@ const Filters = () => {
 
           {/* shipping */}
           <div className="form-control shipping">
-            <label htmlFor="shipping">Free Shipping</label>
+            <label htmlFor="shipping">
+              <h5>Free Shipping</h5>
+            </label>
             <input
               type="checkbox"
               name="shipping"
@@ -166,8 +169,10 @@ const Filters = () => {
 const Wrapper = styled.section`
   .form-control {
     margin-bottom: 1.25rem;
+
     h5 {
       margin-bottom: 0.5rem;
+      font-size: 1.125rem;
     }
   }
   .search-input {
@@ -175,6 +180,7 @@ const Wrapper = styled.section`
     background: var(--clr-grey-10);
     border-radius: var(--radius);
     border-color: transparent;
+    outline: none;
     letter-spacing: var(--spacing);
   }
   .search-input::placeholder {
@@ -185,6 +191,7 @@ const Wrapper = styled.section`
     display: block;
     margin: 0.25em 0;
     padding: 0.25rem 0;
+    font-size: 1rem;
     text-transform: capitalize;
     background: transparent;
     border: none;
@@ -201,6 +208,7 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     border-color: transparent;
     outline: none;
+    font-size: 1rem;
     padding: 0.25rem;
   }
   .colors {

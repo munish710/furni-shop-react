@@ -39,7 +39,11 @@ const SingleProductPage = () => {
   }, [error]);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <div className="section-center page-100">
+        <Loading />
+      </div>
+    );
   }
   if (error) {
     return <Error />;
