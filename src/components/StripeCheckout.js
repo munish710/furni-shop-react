@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const { cart, totalAMount, shippingFee, clearCart } = useCartContext();
+  const { cart, totalAmount, shippingFee, clearCart } = useCartContext();
   const { myUser } = useUserContext();
   const history = useHistory();
 
@@ -48,7 +48,14 @@ const CheckoutForm = () => {
   };
 
   const createPaymentIntent = async () => {
-    console.log("Hifrom stripe chekcout");
+    try {
+      const data = await axios.post(
+        "/.netlify/functions/create-payment-intent",
+        JSON.stringify({ cart, shippingFee, totalAmount })
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
