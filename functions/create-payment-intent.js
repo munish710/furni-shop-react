@@ -4,7 +4,7 @@ const stripe = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
 
 exports.handler = async function (event, context) {
   if (event.body) {
-    const { cart, shippingFee, totalAmount } = JSON.parse(event.body);
+    const { shippingFee, totalAmount } = JSON.parse(event.body);
     //technically we should never use clientside payment values
     //always get them from your server backend and DB for every item.
     const calculateOrderAmount = () => {
@@ -27,11 +27,6 @@ exports.handler = async function (event, context) {
         body: JSON.stringify({ error: err.message }),
       };
     }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(cart),
-    };
   }
   return {
     statusCode: 200,

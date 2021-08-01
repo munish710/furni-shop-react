@@ -21,11 +21,11 @@ const CheckoutForm = () => {
   const history = useHistory();
 
   //STRIPE STUFF
-  const [succeded, setSuccedd] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setCLientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
@@ -55,10 +55,9 @@ const CheckoutForm = () => {
         JSON.stringify({ cart, shippingFee, totalAmount })
       );
 
-      setCLientSecret(data.clientSecret);
-      console.log(data.clientSecret);
+      setClientSecret(data.clientSecret);
     } catch (err) {
-      console.log(err.response);
+      // console.log(err);
     }
   };
 
@@ -67,18 +66,57 @@ const CheckoutForm = () => {
     //eslint-disable-next-line
   }, []);
 
-  const handleChange = async (e) => {};
-  const handleSubmit = async (e) => {};
+  const handleChange = async (e) => {
+    setDisabled(e.empty);
+    setError(e.error ? e.error.message : "");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProcessing(false);
+    } else {
+      setError(null);
+      setProcessing(false);
+      setSucceeded(true);
+      setTimeout(() => {
+        clearCart();
+        history.push("/");
+      }, 4000);
+    }
+  };
 
   return (
     <div>
+      {succeeded ? (
+        <article>
+          <h4>Thank you</h4>
+          <h4>Your payment was successful!</h4>
+          <h4>Redirecting to homepage...</h4>
+        </article>
+      ) : (
+        <article>
+          <h4>Hello, {myUser?.name}</h4>
+          <p>Your total is {formatPrice(shippingFee + totalAmount)}</p>
+          <p>Test Card Number: 4242 4242 4242 4242</p>
+        </article>
+      )}
       <form id="payment-form" onSubmit={handleSubmit}>
         <CardElement
           id="card-element"
           options={cardStyle}
           onChange={handleChange}
         />
-        <button disabled={processing || disabled || succeded} id="submit">
+        <button disabled={processing || disabled || succeeded} id="submit">
           <span id="button-text">
             {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
           </span>
@@ -90,8 +128,8 @@ const CheckoutForm = () => {
           </div>
         )}
         {/* Show a success messaage upon completion */}
-        <p className={succeded ? "result-message" : "result-message hidden"}>
-          Payment succeded, see the result in your
+        <p className={succeeded ? "result-message" : "result-message hidden"}>
+          Payment succeeded, see the result in your
           <a href={`https://dashboard.stripe.com/test/payments ]`}>
             Stripe Dashboard
           </a>
