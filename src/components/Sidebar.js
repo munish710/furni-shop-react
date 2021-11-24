@@ -17,7 +17,12 @@ const Sidebar = () => {
         className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
       >
         <div className="sidebar-header">
-          <img src={logo} className="logo" alt="comfy sloth" />
+          {/* <img src={logo} className="logo" alt="comfy sloth" /> */}
+          <h4>
+            <i>
+              <span className="logo">Furni</span>Store
+            </i>
+          </h4>
           <button className="close-btn" type="button" onClick={closeSidebar}>
             <FaTimes />
           </button>
@@ -48,6 +53,13 @@ const Sidebar = () => {
 
 const SidebarContainer = styled.div`
   text-align: center;
+  h4 {
+    font-size: 1.75rem;
+    color: var(--clr-grey-3);
+  }
+  .logo {
+    color: var(--clr-primary-5);
+  }
   .sidebar-header {
     display: flex;
     justify-content: space-between;

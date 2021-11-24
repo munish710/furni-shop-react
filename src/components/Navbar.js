@@ -17,7 +17,12 @@ const Nav = () => {
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={logo} alt="comfy-sloth" />
+            {/* <img src={logo} alt="comfy-sloth" /> */}
+            <h4>
+              <i>
+                <span className="logo">Furni</span>Store
+              </i>
+            </h4>
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
@@ -49,6 +54,14 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  h4 {
+    font-size: 1.75rem;
+    color: var(--clr-grey-3);
+  }
+  .logo {
+    color: var(--clr-primary-5);
+  }
 
   .nav-center {
     width: 90vw;
