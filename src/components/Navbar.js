@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
@@ -20,7 +19,7 @@ const Nav = () => {
             {/* <img src={logo} alt="comfy-sloth" /> */}
             <h4>
               <i>
-                <span className="logo">Furni</span>Store
+                <span className="logo">Furni</span>Shop
               </i>
             </h4>
           </Link>

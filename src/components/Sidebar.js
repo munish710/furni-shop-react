@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -20,7 +19,7 @@ const Sidebar = () => {
           {/* <img src={logo} className="logo" alt="comfy sloth" /> */}
           <h4>
             <i>
-              <span className="logo">Furni</span>Store
+              <span className="logo">Furni</span>Shop
             </i>
           </h4>
           <button className="close-btn" type="button" onClick={closeSidebar}>
