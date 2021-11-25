@@ -9,15 +9,16 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useCartContext } from "../context/cart_context";
-import { useUserContext } from "../context/user_context";
 import { formatPrice } from "../utils/helpers";
 import { useHistory } from "react-router-dom";
+import { useUserContext } from "../context/user_context";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
   const { cart, totalAmount, shippingFee, clearCart } = useCartContext();
-  const { myUser } = useUserContext();
+  const { orders, setOrders, perOrderTotal, setPerOrderTotal } =
+    useUserContext();
   const history = useHistory();
 
   //STRIPE STUFF
@@ -87,10 +88,12 @@ const CheckoutForm = () => {
     } else {
       setError(null);
       setProcessing(false);
+      setOrders([...orders, cart]);
+      setPerOrderTotal([...perOrderTotal, totalAmount + shippingFee]);
       setSucceeded(true);
       setTimeout(() => {
         clearCart();
-        history.push("/");
+        history.push("/orders");
       }, 4000);
     }
   };
@@ -100,13 +103,13 @@ const CheckoutForm = () => {
       {succeeded ? (
         <article>
           <h4>Thank you</h4>
-          <h4>Your payment was successful!</h4>
-          <h4>Redirecting to homepage...</h4>
+          <h4 className="success">Your payment was successful!</h4>
+          <h4>Redirecting to orders page...</h4>
         </article>
       ) : (
         <article>
-          <h4>Hello, {myUser?.name}</h4>
-          <p>Your total is {formatPrice(shippingFee + totalAmount)}</p>
+          <h4>Make Payment</h4>
+          <h5>Your total is {formatPrice(shippingFee + totalAmount)}</h5>
           <p>Test Card Number: 4242 4242 4242 4242</p>
         </article>
       )}
@@ -129,11 +132,7 @@ const CheckoutForm = () => {
         )}
         {/* Show a success messaage upon completion */}
         <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, see the result in your
-          <a href={`https://dashboard.stripe.com/test/payments ]`}>
-            Stripe Dashboard
-          </a>
-          Refresh the page to pay again.
+          Payment succeeded. Refresh the page to pay again.
         </p>
       </form>
     </div>
@@ -171,6 +170,9 @@ const Wrapper = styled.section`
     background: white;
     box-sizing: border-box;
   }
+  .success {
+    color: var(--clr-primary-5);
+  }
   .result-message {
     line-height: 22px;
     font-size: 16px;
@@ -204,7 +206,7 @@ const Wrapper = styled.section`
   }
   /* Buttons and links */
   button {
-    background: #5469d4;
+    background: #4f7942;
     font-family: Arial, sans-serif;
     color: #ffffff;
     border-radius: 0 0 4px 4px;
@@ -252,7 +254,7 @@ const Wrapper = styled.section`
   .spinner:before {
     width: 10.4px;
     height: 20.4px;
-    background: #5469d4;
+    background: #4f7942;
     border-radius: 20.4px 0 0 20.4px;
     top: -0.2px;
     left: -0.2px;
@@ -264,7 +266,7 @@ const Wrapper = styled.section`
   .spinner:after {
     width: 10.4px;
     height: 10.2px;
-    background: #5469d4;
+    background: #4f7942;
     border-radius: 0 10.2px 10.2px 0;
     top: -0.1px;
     left: 10.2px;
