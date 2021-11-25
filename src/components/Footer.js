@@ -45,7 +45,7 @@ const Footer = () => {
 };
 
 const Wrapper = styled.footer`
-  background: var(--clr-black);
+  background: #1d1e18;
   margin-top: 2rem;
   .code {
     color: var(--clr-red-dark);
