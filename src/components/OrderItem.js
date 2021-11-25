@@ -1,18 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
-import AmountButtons from "./AmountButtons";
-import { FaTrash } from "react-icons/fa";
-import { useCartContext } from "../context/cart_context";
-const CartItem = ({ id, image, name, color, price, amount }) => {
-  const { removeItem, toggleAmount } = useCartContext();
-  const increase = () => {
-    toggleAmount(id, "inc");
-  };
 
-  const decrease = () => {
-    toggleAmount(id, "dec");
-  };
+const OrderItem = ({ id, name, color, price, image, amount }) => {
   return (
     <Wrapper>
       <div className="title">
@@ -25,43 +15,36 @@ const CartItem = ({ id, image, name, color, price, amount }) => {
           <h5 className="price-small">{formatPrice(price)}</h5>
         </div>
       </div>
-      <h5 className="price">{formatPrice(price)}</h5>
-      <AmountButtons amount={amount} increase={increase} decrease={decrease} />
-      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
-      <button
-        type="button"
-        className="remove-btn"
-        onClick={() => removeItem(id)}
-      >
-        <FaTrash />
-      </button>
+      <h5 className="price">Price: {formatPrice(price)}</h5>
+      <h5>Qty: {amount}</h5>
+      <h5>Total: {formatPrice(price * amount)}</h5>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
-  .subtotal {
-    display: none;
-  }
-  .price {
-    display: none;
-  }
+  border: 1px solid var(--clr-primary-9);
+  border-radius: var(--radius);
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 200px auto auto;
+  grid-template-columns: 175px auto auto;
   grid-template-rows: 75px;
   gap: 3rem 1rem;
   justify-items: center;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
   align-items: center;
+  .price {
+    display: none;
+  }
   .title {
     grid-template-rows: 75px;
     display: grid;
-    grid-template-columns: 75px 125px;
+    grid-template-columns: 75px 100px;
     align-items: flex-start;
     text-align: left;
     gap: 1rem;
     h5 {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
   img {
@@ -72,8 +55,9 @@ const Wrapper = styled.article`
     object-fit: cover;
   }
   h5 {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-bottom: 0;
+    font-weight: 400;
   }
 
   .color {
@@ -97,46 +81,16 @@ const Wrapper = styled.article`
   .price-small {
     color: var(--clr-primary-5);
   }
-  .amount-btns {
-    width: 75px;
-    button {
-      width: 1rem;
-      height: 0.5rem;
-      font-size: 0.75rem;
-    }
-    h2 {
-      font-size: 1rem;
-    }
-  }
-  .remove-btn {
-    color: var(--clr-white);
-    background: transparent;
-    border: transparent;
-    letter-spacing: var(--spacing);
-    background: var(--clr-red-dark);
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    font-size: 0.75rem;
-    cursor: pointer;
-  }
+
   @media (min-width: 776px) {
-    .subtotal {
-      display: block;
-      margin-bottom: 0;
-      color: var(--clr-grey-5);
-      font-weight: 400;
-      font-size: 1rem;
+    h5 {
+      font-size: 1.125rem;
     }
     .price-small {
       display: none;
     }
     .price {
       display: block;
-      font-size: 1rem;
       color: var(--clr-primary-3);
       font-weight: 400;
     }
@@ -150,7 +104,7 @@ const Wrapper = styled.article`
         height: 0.85rem;
       }
     }
-    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     grid-template-rows: 75px;
     img {
@@ -164,18 +118,7 @@ const Wrapper = styled.article`
       gap: 1rem;
       text-align: left;
     }
-    .amount-btns {
-      width: 100px;
-      button {
-        width: 1.5rem;
-        height: 1rem;
-        font-size: 1rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
   }
 `;
 
-export default CartItem;
+export default OrderItem;

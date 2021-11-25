@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="content">
           <p>Hurry! Subscribe now. We promise we won't spam you :)</p>
 
-          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+          {/* <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               className="form-input"
@@ -18,7 +18,7 @@ const Contact = () => {
             <button type="submit" className="submit-btn">
               subscribe
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </Wrapper>

@@ -7,6 +7,7 @@ import Error from "./ErrorPage";
 import Checkout from "./CheckoutPage";
 import PrivateRoute from "./PrivateRoute";
 import AuthWrapper from "./AuthWrapper";
+import Orders from "./Orders";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Checkout,
   PrivateRoute,
   AuthWrapper,
+  Orders,
 };

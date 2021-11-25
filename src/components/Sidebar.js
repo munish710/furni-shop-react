@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -17,7 +16,12 @@ const Sidebar = () => {
         className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
       >
         <div className="sidebar-header">
-          <img src={logo} className="logo" alt="comfy sloth" />
+          {/* <img src={logo} className="logo" alt="comfy sloth" /> */}
+          <h4>
+            <i>
+              <span className="logo">Furni</span>Shop
+            </i>
+          </h4>
           <button className="close-btn" type="button" onClick={closeSidebar}>
             <FaTimes />
           </button>
@@ -39,6 +43,13 @@ const Sidebar = () => {
               </Link>
             </li>
           )}
+          {myUser && (
+            <li>
+              <Link to="/orders" onClick={closeSidebar}>
+                orders
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </aside>
@@ -48,6 +59,13 @@ const Sidebar = () => {
 
 const SidebarContainer = styled.div`
   text-align: center;
+  h4 {
+    font-size: 1.75rem;
+    color: var(--clr-grey-3);
+  }
+  .logo {
+    color: var(--clr-primary-5);
+  }
   .sidebar-header {
     display: flex;
     justify-content: space-between;
