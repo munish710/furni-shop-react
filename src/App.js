@@ -11,6 +11,7 @@ import {
   Products,
   PrivateRoute,
   AuthWrapper,
+  Orders,
 } from "./pages";
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
           <Route exact path="/products/:id" children={<SingleProduct />} />
           <PrivateRoute exact path="/checkout">
             <Checkout />
+          </PrivateRoute>
+          <PrivateRoute exact path="/orders">
+            <Orders />
           </PrivateRoute>
           <Route exact path="*">
             <Error />

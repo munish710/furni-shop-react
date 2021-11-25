@@ -41,6 +41,11 @@ const Nav = () => {
               <Link to="/checkout">checkout</Link>
             </li>
           )}
+          {myUser && (
+            <li>
+              <Link to="/orders">orders</Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </div>

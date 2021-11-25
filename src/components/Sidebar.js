@@ -43,6 +43,13 @@ const Sidebar = () => {
               </Link>
             </li>
           )}
+          {myUser && (
+            <li>
+              <Link to="/orders" onClick={closeSidebar}>
+                orders
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </aside>
